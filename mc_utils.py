@@ -61,22 +61,23 @@ count_matrix = cv.fit_transform(df['combined_features'])
 # calculate cosine-similarity between items
 cosine_sim = cosine_similarity(count_matrix)
 
-strain_user_likes='Skywalker'
+strain_user_likes = 'Skywalker'
 
 strain_index = get_index_from_strain(strain_user_likes)
 
-## find similar strains
-## enumerate assigns an index 
-## list casts our result as list
+# find similar strains
+# enumerate assigns an index
+# list casts our result as list
 similar_strains = list(enumerate(cosine_sim[strain_index]))
 
-## sort similar strains so most close are at the top
-sorted_similar_strains = sorted(similar_strains, key= lambda x:x[1], reverse=True)
+# sort similar strains so most close are at the top
+sorted_similar_strains = sorted(
+    similar_strains, key=lambda x: x[1], reverse=True)
 
-## print 10 closest strain names
+# print 10 closest strain names
 i = 0
 result = for strain in sorted_similar_strains:
-            print(get_strain_from_index(strain[0]))
-            i = i + 1
-            if i > 11:
-                break
+    print(get_strain_from_index(strain[0]))
+    i = i + 1
+    if i > 11:
+        break
