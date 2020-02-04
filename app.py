@@ -2,8 +2,13 @@ from flask import Flask
 import sqlite3
 import pandas as pd
 
-app = Flask(__name__)
 
+app = Flask(__name__)
+    
+
+@app.route('/')
+def hello_world():
+  return str(result_query)
 
 df = pd.read_csv('cannabis.csv')
 conn = sqlite3.connect('cannabis.sqlite3')
@@ -22,6 +27,5 @@ WHERE Effects LIKE '%Sleepy%'
 result_query = curs.execute(query1).fetchall()
 
 
-@app.route('/')
-def hello_world():
-    return str(result_query)
+
+

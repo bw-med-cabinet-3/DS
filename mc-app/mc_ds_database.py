@@ -4,6 +4,8 @@ import pandas as pd
 df = pd.read_csv('cannabis.csv')
 conn = sqlite3.connect('cannabis.sqlite3')
 curs = conn.cursor()
+drop_table = '''DROP TABLE cannabis;'''
+curs.execute(drop_table)
 df.to_sql('cannabis', conn)
 
 query1 = '''SELECT SUM(character_id)
