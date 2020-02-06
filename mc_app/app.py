@@ -8,11 +8,10 @@ pickle_dict = pickle.load(open("marijuana_dict.p", "rb"))
 
 def create_app():
     app = Flask(__name__)
-    @app.route('/strain', methods=['GET'])
-    def myfunc():
-      req_strain = request.get_json(force=True)
-      strain = req_strain["front_end_key"]
-      return jsonify({strain:pickle_dict[strain]})
+    @app.route('/strain/<strain>', methods=['GET'])
+    def myfunc(strain):
+      #strain = request.values['strain']
+      return jsonify({"strain":pickle_dict[strain]})
 
  
     return app
