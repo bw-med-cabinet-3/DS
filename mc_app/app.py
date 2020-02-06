@@ -1,10 +1,8 @@
 from flask import Flask, request, jsonify
 import pandas as pd
 from mc_app import mc_utils
-
-
-# Unpickle Dicitionary
-# my_dict
+import pickle
+pickle_dict = pickle.load(open("marijuana_dict.p", "rb"))
 
 
 def create_app():
@@ -12,7 +10,7 @@ def create_app():
     @app.route('/strain', methods=['GET'])
     def myfunc():
       #strain = strain or request.values['strain']
-      return 'hello world'# jsonify({strain:my_dict[strain]})
+      return jsonify({'strain':pickle_dict['100-og']})
 
  
     return app
