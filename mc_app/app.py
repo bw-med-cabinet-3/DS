@@ -10,7 +10,8 @@ def create_app():
     app = Flask(__name__)
     @app.route('/strain', methods=['GET'])
     def myfunc():
-      strain = request.values['strain']
+      req_strain = request.get_json(force=True)
+      strain = req_strain["front_end_key"]
       return jsonify({strain:pickle_dict[strain]})
 
  
