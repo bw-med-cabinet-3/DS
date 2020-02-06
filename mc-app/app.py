@@ -1,29 +1,21 @@
-from flask import Flask
-import sqlite3
+from flask import Flask, request
 import pandas as pd
+from mc_app import mc_utils
 
-
-df = pd.read_csv('cannabis.csv')
-conn = sqlite3.connect('cannabis.sqlite3')
-curs = conn.cursor()
-drop_table = '''DROP TABLE cannabis;'''
-curs.execute(drop_table)
-df.to_sql('cannabis', conn)
-
-query1 = '''SELECT * from cannabis;'''
-
-
-result_query = curs.execute(query1).fetchall()
+result = mc_utils.recommend_strains('superman-og', 10)
 
 
 def create_app():
-  app = Flask(__name__)
-  @app.route('/')
-  def hello_world():
-    return str(result_query)
+    app = Flask(__name__)
+    @app.route('/')
+    def myfunc():
+      return str(result)
 
-  return app
+ 
+    return app
+     
+
 
 
 if __name__ == "__main__":
-  app = create_app()
+    app = create_app()
