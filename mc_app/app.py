@@ -1,15 +1,18 @@
-from flask import Flask, request
+from flask import Flask, request, jsonify
 import pandas as pd
 from mc_app import mc_utils
 
-result = mc_utils.recommend_strains('superman-og', 10)
+
+# Unpickle Dicitionary
+# my_dict
 
 
 def create_app():
     app = Flask(__name__)
-    @app.route('/')
+    @app.route('/strain', methods=['GET'])
     def myfunc():
-      return str(result)
+      #strain = strain or request.values['strain']
+      return 'hello world'# jsonify({strain:my_dict[strain]})
 
  
     return app
