@@ -10,7 +10,7 @@ def create_app():
     app = Flask(__name__)
     @app.route('/strain', methods=['GET'])
     def myfunc():
-      strain = '100-og' or request.values['strain']
+      strain = request.values['strain']
       return jsonify({strain:pickle_dict[strain]})
 
  
